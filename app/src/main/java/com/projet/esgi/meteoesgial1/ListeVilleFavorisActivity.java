@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ListeVilleFavoris extends Activity {
+public class ListeVilleFavorisActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

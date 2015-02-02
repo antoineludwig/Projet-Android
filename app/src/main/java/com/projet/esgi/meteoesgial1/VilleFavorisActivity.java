@@ -4,23 +4,21 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 
 
-public class ListeVilles extends Activity {
+public class VilleFavorisActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liste_villes);
+        setContentView(R.layout.activity_ville_favoris);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_liste_villes, menu);
+        getMenuInflater().inflate(R.menu.menu_ville_favoris, menu);
         return true;
     }
 
@@ -31,15 +29,6 @@ public class ListeVilles extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //récupère la liste de ville
-        ListView li = (ListView) findViewById(R.id.listeVille);
-        li.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TO DO ouvre l'autre activity
-            }
-        });
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -47,6 +36,4 @@ public class ListeVilles extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
