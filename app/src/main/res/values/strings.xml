@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Meteo ESGI AL1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_ville">Ville</string>
+    <string name="title_activity_ville_favoris">Favori</string>
+    <string name="title_activity_liste_ville_favoris">Liste Favoris</string>
+
+</resources>

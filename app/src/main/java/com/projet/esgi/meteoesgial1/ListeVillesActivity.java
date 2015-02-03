@@ -1,15 +1,17 @@
 package com.projet.esgi.meteoesgial1;
 
+<<<<<<< HEAD:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVilles.java
 import android.app.Activity;
 import android.content.Intent;
+=======
+import android.support.v7.app.ActionBarActivity;
+>>>>>>> 3a3773acacad9a404d2957cb65cb0394e7d39740:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVillesActivity.java
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
 
 
-public class ListeVilles extends Activity {
+public class ListeVillesActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class ListeVilles extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+<<<<<<< HEAD:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVilles.java
         //récupère la liste de ville
         ListView li = (ListView) findViewById(R.id.listeVille);
         li.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +47,8 @@ public class ListeVilles extends Activity {
             }
         });
 
+=======
+>>>>>>> 3a3773acacad9a404d2957cb65cb0394e7d39740:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVillesActivity.java
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -51,6 +56,4 @@ public class ListeVilles extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
