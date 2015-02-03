@@ -1,6 +1,7 @@
 package com.projet.esgi.meteoesgial1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,9 @@ public class ListeVilles extends Activity {
         li.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent = new Intent();
+                startActivity(intent);
                 //TO DO ouvre l'autre activity
             }
         });
