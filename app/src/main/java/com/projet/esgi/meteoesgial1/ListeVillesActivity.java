@@ -12,11 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Switch;
 
 
 public class ListeVillesActivity extends Activity {
 
     private ListView listeDesVilles;
+    private Switch listeFavoris;
     static String[]  lesVilles = {"ville1","ville2"};
 
     @Override
@@ -25,13 +27,22 @@ public class ListeVillesActivity extends Activity {
         setContentView(R.layout.activity_liste_villes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,lesVilles);
 
+        //liste des villes
         listeDesVilles = (ListView) findViewById(R.id.listeVille);
         listeDesVilles.setAdapter(adapter);
-
         listeDesVilles.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onVilleChoisieClick();
+                onVilleChoisieClick(i);
+            }
+        });
+
+        //liste des favoris
+        listeFavoris = (Switch) findViewById(R.id.favoris);
+        listeFavoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeListToFavoris(view);
             }
         });
     }
@@ -59,12 +70,16 @@ public class ListeVillesActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onVilleChoisieClick(){
-        Log.v("entre","entre dans la fonction");
-        listeDesVilles = (ListView) findViewById(R.id.listeVille);
-        //récupère la liste de ville
+    public void onVilleChoisieClick(int position){
         Intent intent = new Intent(this,VilleActivity.class);
-        intent.putExtra("nomville",listeDesVilles.getSelectedItem().toString());
+        intent.putExtra("nomville",listeDesVilles.getItemAtPosition(position).toString());
         startActivity(intent);
+    }
+
+    public void changeListToFavoris(View view){
+        if(listeFavoris.isChecked())
+        {
+            //TO DO update listeVille
+        }
     }
 }

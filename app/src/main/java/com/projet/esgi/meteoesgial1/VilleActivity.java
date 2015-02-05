@@ -1,9 +1,12 @@
 package com.projet.esgi.meteoesgial1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class VilleActivity extends Activity {
@@ -12,6 +15,9 @@ public class VilleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ville);
+        TextView nomDeLaVille = (TextView)findViewById(R.id.nomVille);
+        Intent i = getIntent();
+        nomDeLaVille.setText(i.getStringExtra("nomville"));
     }
 
 
