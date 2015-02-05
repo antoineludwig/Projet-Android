@@ -1,22 +1,39 @@
 package com.projet.esgi.meteoesgial1;
 
-<<<<<<< HEAD:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVilles.java
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
-=======
-import android.support.v7.app.ActionBarActivity;
->>>>>>> 3a3773acacad9a404d2957cb65cb0394e7d39740:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVillesActivity.java
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 
-public class ListeVillesActivity extends ActionBarActivity {
+public class ListeVillesActivity extends Activity {
+
+    private ListView listeDesVilles;
+    static String[]  lesVilles = {"ville1","ville2"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_villes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,lesVilles);
+
+        listeDesVilles = (ListView) findViewById(R.id.listeVille);
+        listeDesVilles.setAdapter(adapter);
+
+        listeDesVilles.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onVilleChoisieClick();
+            }
+        });
     }
 
 
@@ -27,33 +44,27 @@ public class ListeVillesActivity extends ActionBarActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-<<<<<<< HEAD:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVilles.java
-        //récupère la liste de ville
-        ListView li = (ListView) findViewById(R.id.listeVille);
-        li.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-                startActivity(intent);
-                //TO DO ouvre l'autre activity
-            }
-        });
-
-=======
->>>>>>> 3a3773acacad9a404d2957cb65cb0394e7d39740:app/src/main/java/com/projet/esgi/meteoesgial1/ListeVillesActivity.java
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onVilleChoisieClick(){
+        Log.v("entre","entre dans la fonction");
+        listeDesVilles = (ListView) findViewById(R.id.listeVille);
+        //récupère la liste de ville
+        Intent intent = new Intent(this,VilleActivity.class);
+        intent.putExtra("nomville",listeDesVilles.getSelectedItem().toString());
+        startActivity(intent);
     }
 }
