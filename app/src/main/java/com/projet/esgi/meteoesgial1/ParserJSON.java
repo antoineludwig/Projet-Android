@@ -8,20 +8,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ParserJSON {
-    private String json;
 
-    public Ville parseCurrentWeatherData() throws JSONException {
+    public static MeteoData parseCurrentWeatherData(String json) throws JSONException {
         if (json != null) {
             Ville ville = new Ville();
 
             JSONObject jsonObject = new JSONObject(json);
             ville.setNom(jsonObject.getString("name"));
-            ville.setLatitude(jsonObject.getDouble("lat"));
-            ville.setLongitude(jsonObject.getDouble("long"));
+
+            JSONObject jsonCoord = jsonObject.getJSONObject("coord");
+            ville.setLatitude(jsonCoord.getDouble("lat"));
+            ville.setLongitude(jsonCoord.getDouble("lon"));
+
+            MeteoData meteoData = new MeteoData();
+            meteoData.setDate(jsonObject.getLong("dt"));
+
+            JSONArray arrayWeather = jsonObject.getJSONArray("weather");
+            meteoData.setId(arrayWeather.getJSONObject(0).getInt("id"));
+            meteoData.setDescription(arrayWeather.getJSONObject(0).getString("description"));
 
             JSONObject jsonMain = jsonObject.getJSONObject("main");
-            MeteoData meteoData = new MeteoData();
-            meteoData.setDate(jsonMain.getLong("dt"));
             meteoData.setTemp(jsonMain.getDouble("temp"));
             meteoData.setHumidity(jsonMain.getDouble("humidity"));
             meteoData.setTemp_min(jsonMain.getDouble("temp_min"));
@@ -34,7 +40,7 @@ public class ParserJSON {
 
             ville.setMeteoData(meteoData);
 
-            return ville;
+            return meteoData;
         }else{
             return null;
         }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projet.esgi.meteoesgial1" >
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -23,10 +24,6 @@
         <activity
             android:name=".VilleFavorisActivity"
             android:label="@string/title_activity_ville_favoris" >
-        </activity>
-        <activity
-            android:name=".ListeVilleFavorisActivity"
-            android:label="@string/title_activity_liste_ville_favoris" >
         </activity>
     </application>
 

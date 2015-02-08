@@ -33,10 +33,10 @@ public class ListeVillesActivity extends Activity {
         setContentView(R.layout.activity_liste_villes);
 
         //DEBUG
-        lesVilles.add(new Ville("Ville 1"));
-        lesVilles.add(new Ville("Ville 2"));
-        lesVilles.add(new Ville("Ville 3"));
-        lesVilles.add(new Ville("Ville 4"));
+        lesVilles.add(new Ville("London"));
+        lesVilles.add(new Ville("Paris"));
+        lesVilles.add(new Ville("Madrid"));
+        lesVilles.add(new Ville("Berlin"));
         initListVille(lesVilles);
 
         lesVillesFavoris.add(new Ville("Ville Fav1"));
