@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Switch;
 
+import com.projet.esgi.meteoesgial1.MeteoApplication;
 import com.projet.esgi.meteoesgial1.R;
 import com.projet.esgi.meteoesgial1.adapter.AdapterListeVille;
 import com.projet.esgi.meteoesgial1.modele.Ville;
@@ -34,14 +35,10 @@ public class ListeVillesActivity extends Activity {
         setContentView(R.layout.activity_liste_villes);
 
         //DEBUG
-        lesVilles.add(new Ville("London"));
-        lesVilles.add(new Ville("Paris"));
-        lesVilles.add(new Ville("Madrid"));
-        lesVilles.add(new Ville("Berlin"));
+        lesVilles = ((MeteoApplication)getApplication()).getLesVilles();
         initListVille(lesVilles);
 
-        lesVillesFavoris.add(new Ville("Ville Fav1"));
-        lesVillesFavoris.add(new Ville("Ville Fav2"));
+        lesVillesFavoris= ((MeteoApplication)getApplication()).getLesVillesFavoris();
 
         initFavoris();
     }

@@ -12,9 +12,6 @@ import com.projet.esgi.meteoesgial1.modele.Ville;
 
 import java.util.ArrayList;
 
-/**
- * Created by Ludwig on 07/02/2015.
- */
 public class AdapterListeVille extends ArrayAdapter<Ville> {
 
     public AdapterListeVille (Context context,ArrayList<Ville> listVille){
