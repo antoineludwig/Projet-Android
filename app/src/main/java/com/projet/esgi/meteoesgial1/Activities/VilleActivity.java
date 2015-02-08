@@ -1,9 +1,8 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.projet.esgi.meteoesgial1.MeteoAPI.CurrentWeatherTask;
+import com.projet.esgi.meteoesgial1.R;
 import com.projet.esgi.meteoesgial1.modele.MeteoData;
 import com.projet.esgi.meteoesgial1.modele.Ville;
 

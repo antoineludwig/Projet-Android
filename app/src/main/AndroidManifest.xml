@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ListeVillesActivity"
+            android:name=".Activities.ListeVillesActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VilleActivity"
+            android:name=".Activities.VilleActivity"
             android:label="@string/title_activity_ville" >
         </activity>
         <activity
-            android:name=".VilleFavorisActivity"
+            android:name=".Activities.VilleFavorisActivity"
             android:label="@string/title_activity_ville_favoris" >
         </activity>
     </application>

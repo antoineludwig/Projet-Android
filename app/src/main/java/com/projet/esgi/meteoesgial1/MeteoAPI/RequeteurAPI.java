@@ -1,4 +1,4 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.MeteoAPI;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,9 +1,11 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.projet.esgi.meteoesgial1.R;
 
 
 public class VilleFavorisActivity extends Activity {

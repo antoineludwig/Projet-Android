@@ -1,4 +1,4 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.MeteoAPI;
 
 import android.os.AsyncTask;
 import android.util.Log;

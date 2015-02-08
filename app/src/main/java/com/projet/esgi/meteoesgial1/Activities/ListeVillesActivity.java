@@ -1,4 +1,4 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Switch;
 
+import com.projet.esgi.meteoesgial1.R;
 import com.projet.esgi.meteoesgial1.adapter.AdapterListeVille;
 import com.projet.esgi.meteoesgial1.modele.Ville;
 

@@ -1,4 +1,4 @@
-package com.projet.esgi.meteoesgial1;
+package com.projet.esgi.meteoesgial1.MeteoAPI;
 
 import com.projet.esgi.meteoesgial1.modele.MeteoData;
 import com.projet.esgi.meteoesgial1.modele.Ville;
