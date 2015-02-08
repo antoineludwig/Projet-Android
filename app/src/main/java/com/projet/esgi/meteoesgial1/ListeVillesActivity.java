@@ -51,7 +51,7 @@ public class ListeVillesActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_liste_villes, menu);
 
-        //initSearchView(menu);
+        initSearchView(menu);
 
         return true;
     }
@@ -117,18 +117,16 @@ public class ListeVillesActivity extends Activity {
     }
 
     private void initSearchView(Menu menu) {
-
-        final MenuItem searchItem = menu.findItem(R.id.rechercheVille);
-        final SearchView searchView = (SearchView) menu.findItem(R.id.rechercheVille).getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        rechercheVilleListe = (SearchView) findViewById(R.id.rechercherVille);
+        rechercheVilleListe.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Fetch the data remotely
                 searchVille(query);
                 // Reset SearchView
-                searchView.clearFocus();
-                searchView.setQuery("", false);
-                searchView.setIconified(true);
+                rechercheVilleListe.clearFocus();
+                rechercheVilleListe.setQuery("", false);
+                rechercheVilleListe.setIconified(true);
                 return true;
             }
 
@@ -140,5 +138,7 @@ public class ListeVillesActivity extends Activity {
     }
 
     private void searchVille(String nom){
+        lesVilles.add(new Ville("VilleRecherche"));
+        initListVille(lesVilles);
     }
 }
