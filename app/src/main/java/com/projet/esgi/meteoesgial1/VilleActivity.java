@@ -6,18 +6,31 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.projet.esgi.meteoesgial1.modele.Ville;
 
 
 public class VilleActivity extends Activity {
+
+    private Button boutonRetour;
+    private CheckBox checkFavoris;
+    private Ville laVille = new Ville();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ville);
         TextView nomDeLaVille = (TextView)findViewById(R.id.nomVille);
+
+        initElements();
+
         Intent i = getIntent();
-        nomDeLaVille.setText(i.getStringExtra("nomville"));
+        laVille = (Ville)i.getSerializableExtra("ville");
+        nomDeLaVille.setText(laVille.getNom());
     }
 
 
@@ -41,5 +54,26 @@ public class VilleActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initElements(){
+        boutonRetour = (Button) findViewById(R.id.retour);
+        checkFavoris = (CheckBox) findViewById(R.id.favoris);
+        boutonRetour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(VilleActivity.this,ListeVillesActivity.class);
+                startActivity(intent);
+            }
+        });
+        checkFavoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                laVille.setFavoris(true);
+
+            }
+        });
     }
 }

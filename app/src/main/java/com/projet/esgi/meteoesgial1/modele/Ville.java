@@ -1,14 +1,24 @@
 package com.projet.esgi.meteoesgial1.modele;
 
-public class Ville {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Ville implements Serializable {
     private String nom;
     private double longitude;
     private double latitude;
+    private boolean favoris;
 
     private MeteoData meteoData;
 
     public Ville(){
 
+    }
+
+    public Ville(String _nom){
+        nom=_nom;
     }
 
     public String getNom() {
@@ -41,5 +51,13 @@ public class Ville {
 
     public void setMeteoData(MeteoData meteoData) {
         this.meteoData = meteoData;
+    }
+
+    public boolean isFavoris() {
+        return favoris;
+    }
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
     }
 }
