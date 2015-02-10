@@ -1,10 +1,15 @@
 package com.projet.esgi.meteoesgial1.modele;
 
+import android.util.Log;
+
+import java.io.Serializable;
 import java.util.Date;
 import com.projet.esgi.meteoesgial1.R;
 
-public class MeteoData {
-    private Date date;
+public class MeteoData  implements Serializable {
+    private static long DUREE_VALIDITE = 60*1000;
+
+    private long date;
     private int id;
     private String description;
     private double temp;
@@ -15,6 +20,9 @@ public class MeteoData {
     private double windSpeed;
     private double windDirection;
 
+    public MeteoData(){
+        this.date = new Date().getTime();
+    }
 
     //Getters et Setters
     public int getId() {
@@ -33,13 +41,15 @@ public class MeteoData {
         this.description = description;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
+    /**
+     * @param unixTime En secondes
+     */
     public void setDate(long unixTime) {
-        // Unix Time en secondes
-        this.date = new Date(unixTime*1000);
+        this.date = unixTime*1000;
     }
 
     public double getTemp() {
@@ -125,5 +135,10 @@ public class MeteoData {
         }
 
         return R.drawable.special;
+    }
+
+    public boolean isObsolete(){
+        long delta = new Date().getTime() - this.date;
+        return delta > DUREE_VALIDITE;
     }
 }

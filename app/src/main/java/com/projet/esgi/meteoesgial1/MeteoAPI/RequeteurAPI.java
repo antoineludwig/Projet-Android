@@ -1,5 +1,7 @@
 package com.projet.esgi.meteoesgial1.MeteoAPI;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,7 +54,7 @@ public class RequeteurAPI {
 
             reponse = sBuffer.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("RequeteurAPI", "Erreur lors de la récupération des données", e);
         }
 
         return reponse;

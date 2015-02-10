@@ -73,7 +73,6 @@ public class ListeVillesActivity extends Activity {
         Intent intent = new Intent(this,VilleActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("ville", (java.io.Serializable) listeDesVilles.getItemAtPosition(position));
-        //intent.putExtra("ville",((Ville)listeDesVilles.getItemAtPosition(position)));
         intent.putExtras(bundle);
         startActivity(intent);
     }
