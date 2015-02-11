@@ -8,6 +8,7 @@
     <string name="title_activity_liste_ville_favoris">Liste Favoris</string>
     <string name="title_activity_liste_ville">Liste des villes</string>
 
+    <string name="erreur_recup_donnees">Erreur lors de la récupération des données</string>
     <string name="langue_API">fr</string>
     <string name="favoris">Favoris</string>
     <string name="retour">Retour</string>

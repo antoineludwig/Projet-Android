@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projet.esgi.meteoesgial1.MeteoAPI.CurrentWeatherTask;
 import com.projet.esgi.meteoesgial1.MeteoApplication;
@@ -19,9 +20,18 @@ import com.projet.esgi.meteoesgial1.R;
 import com.projet.esgi.meteoesgial1.modele.MeteoData;
 import com.projet.esgi.meteoesgial1.modele.Ville;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 
 public class VilleActivity extends Activity {
 
+    private static final String FICHIER_CACHE = "cache_donnees_meteo";
     private Button boutonRetour;
     private CheckBox checkFavoris;
     private Ville laVille = new Ville();
@@ -76,6 +86,8 @@ public class VilleActivity extends Activity {
             temp.setText(meteoData.getTempCelcius());
             ImageView image = (ImageView) findViewById(R.id.logo);
             image.setImageResource(meteoData.getIdPicture());
+        }else{
+            Toast.makeText(getApplicationContext(), (R.string.erreur_recup_donnees), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -84,13 +96,75 @@ public class VilleActivity extends Activity {
         searchTask.execute(laVille.getNom(), getBaseContext().getString(R.string.langue_API));
 
         try{
-            MeteoData meteoData = searchTask.get();
+            MeteoData meteoData = retrieveFromCache(laVille.getNom());
+            if(null == meteoData || meteoData.isObsolete()){
+                meteoData = searchTask.get();
+            }
             laVille.setMeteoData(meteoData);
+            saveInCache(laVille.getNom(), meteoData);
         }catch (Exception e){
-            e.printStackTrace();
+            Log.e("VilleActivity", "Erreur lors de l'exécution de la tâche asynchrone", e);
         }
     }
 
+    /**
+     * Sauvegarde des données
+     */
+    public void saveInCache(String nomVille, MeteoData meteoData){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        File file = new File(getCacheDir(), nomVille);
+        try {
+            fos = new FileOutputStream(file);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(meteoData);
+            oos.flush();
+        }
+        catch (FileNotFoundException fnfe) {
+            Log.e("VilleActivity", "FileNotFoundException", fnfe);
+        }
+        catch (IOException ioe) {
+            Log.e("VilleActivity", "IOException", ioe);
+        }
+        finally {
+            try {
+                if (fos != null)
+                    fos.close();
+            }
+            catch (IOException ioe) {
+                Log.e("VilleActivity", "IOException", ioe);
+            }
+        }
+    }
+
+
+    public MeteoData retrieveFromCache(String nomVille) {
+        FileInputStream fis = null;
+        byte[] buffer = new byte[100];
+        MeteoData meteoData = null;
+        File file = new File(getCacheDir(), nomVille);
+        if(file.exists()) {
+            try {
+                fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                meteoData = (MeteoData) ois.readObject();
+            } catch (FileNotFoundException fnfe) {
+                Log.e("VilleActivity", "FileNotFoundException", fnfe);
+            } catch (IOException ioe) {
+                Log.e("VilleActivity", "IOException", ioe);
+            } catch (ClassNotFoundException cnfe) {
+                Log.e("VilleActivity", "ClassNotFoundException", cnfe);
+            } finally {
+                try {
+                    if (fis != null)
+                        fis.close();
+                } catch (IOException ioe) {
+                    Log.e("VilleActivity", "IOException", ioe);
+                }
+            }
+        }
+        return meteoData;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

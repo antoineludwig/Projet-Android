@@ -21,7 +21,6 @@ public class ParserJSON {
             ville.setLongitude(jsonCoord.getDouble("lon"));
 
             MeteoData meteoData = new MeteoData();
-            meteoData.setDate(jsonObject.getLong("dt"));
 
             JSONArray arrayWeather = jsonObject.getJSONArray("weather");
             meteoData.setId(arrayWeather.getJSONObject(0).getInt("id"));
