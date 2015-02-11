@@ -3,6 +3,7 @@ package com.projet.esgi.meteoesgial1.Activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +40,6 @@ public class ListeVillesActivity extends Activity {
         initListVille(lesVilles);
 
         lesVillesFavoris= ((MeteoApplication)getApplication()).getLesVillesFavoris();
-
         initFavoris();
     }
 
@@ -73,9 +73,19 @@ public class ListeVillesActivity extends Activity {
         Intent intent = new Intent(this,VilleActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("ville", (java.io.Serializable) listeDesVilles.getItemAtPosition(position));
-        //intent.putExtra("ville",((Ville)listeDesVilles.getItemAtPosition(position)));
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    public void initFavoris(){
+        //liste des favoris
+        switchFavoris = (Switch) findViewById(R.id.favoris);
+        switchFavoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeListToFavoris(view);
+            }
+        });
     }
 
     public void changeListToFavoris(View view){
@@ -103,16 +113,7 @@ public class ListeVillesActivity extends Activity {
         });
     }
 
-    public void initFavoris(){
-        //liste des favoris
-        switchFavoris = (Switch) findViewById(R.id.favoris);
-        switchFavoris.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeListToFavoris(view);
-            }
-        });
-    }
+
 
     private void initSearchView(Menu menu) {
         rechercheVilleListe = (SearchView) findViewById(R.id.rechercherVille);

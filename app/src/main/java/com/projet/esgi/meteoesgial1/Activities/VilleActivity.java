@@ -2,7 +2,9 @@ package com.projet.esgi.meteoesgial1.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.projet.esgi.meteoesgial1.MeteoAPI.CurrentWeatherTask;
+import com.projet.esgi.meteoesgial1.MeteoApplication;
 import com.projet.esgi.meteoesgial1.R;
 import com.projet.esgi.meteoesgial1.modele.MeteoData;
 import com.projet.esgi.meteoesgial1.modele.Ville;
@@ -28,13 +31,39 @@ public class VilleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ville);
 
-        initElements();
-
         Intent i = getIntent();
         laVille = (Ville)i.getSerializableExtra("ville");
 
-        launckSearchTask();
+        initElements();
+        launchSearchTask();
         initAffichageVille();
+    }
+
+    private void initElements(){
+        boutonRetour = (Button) findViewById(R.id.retour);
+        checkFavoris = (CheckBox) findViewById(R.id.favoris);
+        checkFavoris.setChecked(laVille.isFavoris());
+        boutonRetour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(VilleActivity.this,ListeVillesActivity.class);
+                startActivity(intent);
+            }
+        });
+        checkFavoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(checkFavoris.isChecked()){
+                    ((MeteoApplication)getApplication()).addFavoris(laVille);
+                }else{
+                    ((MeteoApplication)getApplication()).removeFavoris(laVille);
+                }
+
+
+            }
+        });
     }
 
     private void initAffichageVille() {
@@ -50,7 +79,7 @@ public class VilleActivity extends Activity {
         }
     }
 
-    private void launckSearchTask() {
+    private void launchSearchTask() {
         CurrentWeatherTask searchTask = new CurrentWeatherTask();
         searchTask.execute(laVille.getNom(), getBaseContext().getString(R.string.langue_API));
 
@@ -85,24 +114,6 @@ public class VilleActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initElements(){
-        boutonRetour = (Button) findViewById(R.id.retour);
-        checkFavoris = (CheckBox) findViewById(R.id.favoris);
-        boutonRetour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(VilleActivity.this,ListeVillesActivity.class);
-                startActivity(intent);
-            }
-        });
-        checkFavoris.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                laVille.setFavoris(true);
-
-            }
-        });
-    }
 }
