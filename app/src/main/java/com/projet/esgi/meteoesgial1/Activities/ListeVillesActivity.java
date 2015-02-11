@@ -41,6 +41,8 @@ public class ListeVillesActivity extends Activity {
 
         lesVillesFavoris= ((MeteoApplication)getApplication()).getLesVillesFavoris();
         initFavoris();
+
+        initSearchView();
     }
 
 
@@ -48,9 +50,6 @@ public class ListeVillesActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_liste_villes, menu);
-
-        initSearchView(menu);
-
         return true;
     }
 
@@ -115,7 +114,7 @@ public class ListeVillesActivity extends Activity {
 
 
 
-    private void initSearchView(Menu menu) {
+    private void initSearchView() {
         rechercheVilleListe = (SearchView) findViewById(R.id.rechercherVille);
         rechercheVilleListe.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -123,9 +122,9 @@ public class ListeVillesActivity extends Activity {
                 // Fetch the data remotely
                 searchVille(query);
                 // Reset SearchView
-                rechercheVilleListe.clearFocus();
-                rechercheVilleListe.setQuery("", false);
-                rechercheVilleListe.setIconified(true);
+                //rechercheVilleListe.clearFocus();
+                //rechercheVilleListe.setQuery("", false);
+                //rechercheVilleListe.setIconified(true);
                 return true;
             }
 
@@ -134,10 +133,28 @@ public class ListeVillesActivity extends Activity {
                 return false;
             }
         });
+
+        rechercheVilleListe.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                    initListVille(lesVilles);
+            }
+        });
     }
 
-    private void searchVille(String nom){
-        lesVilles.add(new Ville("VilleRecherche"));
-        initListVille(lesVilles);
+    private void searchVille(String query){
+        ArrayList<Ville> lesVillesRecherchees = new ArrayList<Ville>();
+        if(query.length()==0){
+            initListVille(lesVilles);
+        }else{
+            for(Ville v : lesVilles){
+                if (v.getNom().toLowerCase().contains((CharSequence)query.toLowerCase())){
+                    lesVillesRecherchees.add(v);
+                }
+            }
+            initListVille(lesVillesRecherchees);
+        }
+
     }
 }
