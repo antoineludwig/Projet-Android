@@ -40,6 +40,9 @@ public class MeteoApplication extends Application{
                 v.setFavoris(true);
                 lesVillesFavoris.add(v);
             }
+            else{
+                v.setFavoris(false);
+            }
         }
     }
 
