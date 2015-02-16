@@ -2,11 +2,10 @@
 <resources>
 
     <string name="app_name">Meteo ESGI AL1</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Paramètres</string>
     <string name="title_activity_ville">Ville</string>
     <string name="title_activity_ville_favoris">Favori</string>
-    <string name="title_activity_liste_ville_favoris">Liste Favoris</string>
-    <string name="title_activity_liste_ville">Liste des villes</string>
+    <string name="title_activity_liste_ville">Liste des Villes</string>
 
     <string name="erreur_recup_donnees">Erreur lors de la récupération des données</string>
     <string name="langue_API">fr</string>
@@ -14,5 +13,7 @@
     <string name="retour">Retour</string>
     <string name="temp">-°C</string>
     <string name="description"></string>
+    <string name="title_activity_liste_ville_favoris">Liste des villes</string>
+    <string name="aucune_infos">Aucune Infos</string>
 
 </resources>

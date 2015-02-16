@@ -38,6 +38,7 @@ public class MeteoData  implements Serializable {
     }
 
     public void setDescription(String description) {
+        description = description.substring(0,1).toUpperCase() + description.substring(1).toLowerCase();
         this.description = description;
     }
 

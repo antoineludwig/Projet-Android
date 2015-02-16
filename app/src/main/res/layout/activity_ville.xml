@@ -72,7 +72,7 @@
                 />
 
             <TextView
-                android:text="Aucune Infos"
+                android:text="@string/aucune_infos"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
