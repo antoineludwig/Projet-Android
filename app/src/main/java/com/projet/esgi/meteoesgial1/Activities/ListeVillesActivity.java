@@ -85,6 +85,8 @@ public class ListeVillesActivity extends Activity {
                 changeListToFavoris(view);
             }
         });
+        switchFavoris.setChecked(true);
+        switchFavoris.callOnClick();
     }
 
     public void changeListToFavoris(View view){

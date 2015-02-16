@@ -12,6 +12,7 @@
     <string name="langue_API">fr</string>
     <string name="favoris">Favoris</string>
     <string name="retour">Retour</string>
-    <string name="temp">Temp</string>
+    <string name="temp">-°C</string>
+    <string name="description"></string>
 
 </resources>

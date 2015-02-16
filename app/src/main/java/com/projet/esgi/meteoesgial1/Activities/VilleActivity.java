@@ -86,6 +86,8 @@ public class VilleActivity extends Activity {
             temp.setText(meteoData.getTempCelcius());
             ImageView image = (ImageView) findViewById(R.id.logo);
             image.setImageResource(meteoData.getIdPicture());
+            TextView description = (TextView) findViewById(R.id.descriptionVille);
+            description.setText(meteoData.getDescription());
         }else{
             Toast.makeText(getApplicationContext(), (R.string.erreur_recup_donnees), Toast.LENGTH_SHORT).show();
         }

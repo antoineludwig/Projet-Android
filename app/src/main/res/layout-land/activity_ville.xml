@@ -74,16 +74,26 @@
                 android:layout_margin="30dp"/>
 
             <TextView
-                android:text="@string/temp"
+            android:text="@string/temp"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:id="@+id/temperatureVille"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+            <TextView
+                android:text="@string/description"
                 android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textSize="50sp"
-                android:id="@+id/temperatureVille"
-                android:layout_below="@+id/logo"
-                android:layout_centerHorizontal="true"
+                android:textSize="25sp"
+                android:id="@+id/descriptionVille"
                 android:layout_gravity="center"
-                android:gravity="center" />
+                android:gravity="center"/>
         </LinearLayout>
 
 
