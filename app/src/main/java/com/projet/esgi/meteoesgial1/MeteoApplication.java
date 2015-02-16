@@ -31,6 +31,17 @@ public class MeteoApplication extends Application{
         lesVilles.add(new Ville("Montataire"));
         lesVilles.add(new Ville("Moscow"));
         lesVilles.add(new Ville("Stockholm"));
+        lesVilles.add(new Ville("Caen"));
+        lesVilles.add(new Ville("Versailles"));
+        lesVilles.add(new Ville("Copenhague"));
+        lesVilles.add(new Ville("Camberra"));
+        lesVilles.add(new Ville("Alger"));
+        lesVilles.add(new Ville("Chicago"));
+        lesVilles.add(new Ville("Toronto"));
+        lesVilles.add(new Ville("Istanbul"));
+        lesVilles.add(new Ville("Athena"));
+        lesVilles.add(new Ville("Kiev"));
+        lesVilles.add(new Ville("Detroit"));
     }
     public void initListeVillesFavoris() {
         lesVillesFavoris.clear();
