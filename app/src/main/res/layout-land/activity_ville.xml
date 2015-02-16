@@ -63,7 +63,7 @@
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/logo"
                 android:layout_alignParentLeft="true"
@@ -71,7 +71,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_margin="30dp"/>
+                android:layout_margin="30dp" />
 
             <TextView
                 android:text="@string/temp"

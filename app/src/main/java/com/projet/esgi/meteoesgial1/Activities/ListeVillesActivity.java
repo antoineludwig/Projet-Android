@@ -1,5 +1,7 @@
 package com.projet.esgi.meteoesgial1.Activities;
 
+
+import com.projet.esgi.meteoesgial1.MeteoApplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ public class ListeVillesActivity extends Activity {
     private ListView listeDesVilles;
     private Switch switchFavoris;
     private SearchView rechercheVilleListe;
+    private AdapterListeVille adapterVille;
 
     private static ArrayList<Ville> lesVilles = new ArrayList<Ville>();
     private static ArrayList<Ville> lesVillesFavoris = new ArrayList<Ville>();
@@ -35,9 +38,10 @@ public class ListeVillesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_villes);
 
+
         //DEBUG
         lesVilles = ((MeteoApplication)getApplication()).getLesVilles();
-        initListVille(lesVilles);
+        initListVille(lesVilles,false);
 
         lesVillesFavoris= ((MeteoApplication)getApplication()).getLesVillesFavoris();
         initFavoris();
@@ -79,6 +83,7 @@ public class ListeVillesActivity extends Activity {
     public void initFavoris(){
         //liste des favoris
         switchFavoris = (Switch) findViewById(R.id.favoris);
+        switchFavoris.setChecked(false);
         switchFavoris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,28 +93,30 @@ public class ListeVillesActivity extends Activity {
     }
 
     public void changeListToFavoris(View view){
+
         if(switchFavoris.isChecked())
         {
-            initListVille(lesVillesFavoris);
+            initListVille(lesVillesFavoris,true);
         }
         else
         {
-            initListVille(lesVilles);
+            initListVille(lesVilles,false);
         }
     }
 
-    public void initListVille (ArrayList<Ville> listeVilles){
-        AdapterListeVille adapterVille = new AdapterListeVille(this,listeVilles);
+    public void initListVille (ArrayList<Ville> listeVilles,boolean isFavoris){
+        adapterVille = new AdapterListeVille(this,listeVilles,this,isFavoris);
+
 
         //liste des villes
         listeDesVilles = (ListView) findViewById(R.id.listeVille);
         listeDesVilles.setAdapter(adapterVille);
-        listeDesVilles.setOnItemClickListener(new OnItemClickListener() {
+        /*listeDesVilles.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 onVilleChoisieClick(i);
             }
-        });
+        });*/
     }
 
 
@@ -138,7 +145,7 @@ public class ListeVillesActivity extends Activity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
-                    initListVille(lesVilles);
+                    initListVille(lesVilles,false);
             }
         });
     }
@@ -146,15 +153,34 @@ public class ListeVillesActivity extends Activity {
     private void searchVille(String query){
         ArrayList<Ville> lesVillesRecherchees = new ArrayList<Ville>();
         if(query.length()==0){
-            initListVille(lesVilles);
+            initListVille(lesVilles,false);
         }else{
             for(Ville v : lesVilles){
                 if (v.getNom().toLowerCase().contains((CharSequence)query.toLowerCase())){
                     lesVillesRecherchees.add(v);
                 }
             }
-            initListVille(lesVillesRecherchees);
+            initListVille(lesVillesRecherchees,false);
         }
+
+    }
+
+    public void deleteVille(int index){
+
+
+        lesVillesFavoris.get(index).setFavoris(false);
+
+        lesVillesFavoris.remove(index);
+
+
+
+        adapterVille.notifyDataSetChanged();
+        //((MeteoApplication)getApplication()).removeFavoris();
+
+
+        listeDesVilles.deferNotifyDataSetChanged();
+
+
 
     }
 }
